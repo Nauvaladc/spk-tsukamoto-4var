@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Print View - SPK Fuzzy Tsukamoto</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background: #ffffff;
+      }
+
+      .print-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      .print-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      @media print {
+        .no-print {
+          display: none;
+        }
+
+        .print-container {
+          margin: 0;
+          padding: 0;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="print-container">
+      <div id="print-content"></div>
+    </div>
+    <script src="seed.js"></script>
+    <script src="storage.js"></script>
+    <script src="print.js"></script>
+  </body>
+</html>
