@@ -9,24 +9,24 @@ const SeedData = (() => {
   // - Jaminan: Kuat lebih bagus
   const bobotOptions = {
     pendapatan: [
-      { label: "Rendah", value: 0 },
-      { label: "Sedang", value: 4 },
-      { label: "Tinggi", value: 10 },
+      { label: "< Rp. 400.000", value: 0 },
+      { label: "Rp. 400.000 - Rp. 2.000.000", value: 4 },
+      { label: "> Rp. 2.000.000", value: 10 },
     ],
     pinjaman: [
-      { label: "Besar", value: 0 },
-      { label: "Sedang", value: 4 },
-      { label: "Kecil", value: 10 },
+      { label: "Rp. 100.000 - Rp. 500.000", value: 10 },
+      { label: "Rp. 500.000 - Rp. 2.500.000", value: 4 },
+      { label: "Rp. 2.500.000 - Rp. 5.000.000", value: 0 },
     ],
     tenor: [
-      { label: "Panjang", value: 0 },
-      { label: "Sedang", value: 4 },
-      { label: "Pendek", value: 10 },
+      { label: "6 Bulan", value: 10 },
+      { label: "12 Bulan", value: 4 },
+      { label: "24 Bulan", value: 0 },
     ],
     jaminan: [
-      { label: "Lemah", value: 0 },
-      { label: "Sedang", value: 4 },
-      { label: "Kuat", value: 10 },
+      { label: "KTP", value: 0 },
+      { label: "BPKB + KTP", value: 4 },
+      { label: "BPKB + Surat Tanah/Bangunan + KTP", value: 10 },
     ],
   };
 
