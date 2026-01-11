@@ -69,14 +69,8 @@ const App = (() => {
   };
 
   const syncResults = () => {
-    state.permohonan.forEach((item) => {
-      const exists = state.results.find(
-        (result) => result.permohonanId === item.id
-      );
-      if (!exists) {
-        state.results.push(computeResult(item));
-      }
-    });
+    // Rehitung semua hasil supaya tidak basi (terutama setelah admin mengubah rule).
+    state.results = state.permohonan.map((item) => computeResult(item));
     saveState(state);
   };
 
@@ -142,8 +136,8 @@ const App = (() => {
           .map(
             (menu) => `
               <a href="${menu.hash}" class="${
-                activePath === menu.hash ? "active" : ""
-              }">
+              activePath === menu.hash ? "active" : ""
+            }">
                 <span>${menu.label}</span>
               </a>
             `
@@ -227,9 +221,7 @@ const App = (() => {
         .map((option) => {
           const selected =
             Number(option.value) === Number(selectedValue) ? "selected" : "";
-          return `<option value="${option.value}" ${selected}>${
-            option.label
-          } (${option.value})</option>`;
+          return `<option value="${option.value}" ${selected}>${option.label} (${option.value})</option>`;
         })
         .join("");
 
@@ -407,7 +399,9 @@ const App = (() => {
         <p><strong>Keputusan:</strong> ${result.keputusan}</p>
         <p><strong>Z (0-10):</strong> ${toFixed(result.z10)}</p>
         <p><strong>Z (0-100):</strong> ${toFixed(result.z100)}</p>
-        <a class="btn" href="print.html?id=${permohonan.id}" target="_blank">Print View</a>
+        <a class="btn" href="print.html?id=${
+          permohonan.id
+        }" target="_blank">Print View</a>
       </div>
       <div class="card">
         <h2>Rule Aktif</h2>
@@ -509,12 +503,8 @@ const App = (() => {
                           <td>${option.value}</td>
                           <td>
                             <div class="action-row">
-                              <button class="secondary" data-action="edit-bobot" data-variabel="${
-                                variabel
-                              }" data-index="${index}">Ubah</button>
-                              <button class="danger" data-action="hapus-bobot" data-variabel="${
-                                variabel
-                              }" data-index="${index}">Hapus</button>
+                              <button class="secondary" data-action="edit-bobot" data-variabel="${variabel}" data-index="${index}">Ubah</button>
+                              <button class="danger" data-action="hapus-bobot" data-variabel="${variabel}" data-index="${index}">Hapus</button>
                             </div>
                           </td>
                         </tr>
@@ -629,12 +619,8 @@ const App = (() => {
                     <td>${rule.hasil}</td>
                     <td>
                       <div class="action-row">
-                        <button class="secondary" data-action="edit-rule" data-id="${
-                          rule.id
-                        }">Ubah</button>
-                        <button class="danger" data-action="hapus-rule" data-id="${
-                          rule.id
-                        }">Hapus</button>
+                        <button class="secondary" data-action="edit-rule" data-id="${rule.id}">Ubah</button>
+                        <button class="danger" data-action="hapus-rule" data-id="${rule.id}">Hapus</button>
                       </div>
                     </td>
                   </tr>
